@@ -445,6 +445,21 @@ const questions = [
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
+const startQuizButton = document.getElementById("start-quiz-btn");
+const quizSection = document.getElementById("quiz");
+const introText = document.getElementById("intro-text");
+const experienceText = document.getElementById("experience-text");
+const supportText = document.getElementById("support-text");
+
+// Event listener to show the quiz and hide the intro when the button is clicked
+startQuizButton.addEventListener("click", () => {
+    quizSection.style.display = "block"; // Show the quiz section
+    introText.style.display = "none"; // Hide introductory text
+    experienceText.style.display = "none"; // Hide experience text
+    supportText.style.display = "none"; // Hide support text
+    startQuiz(); // Start the quiz function
+    startQuizButton.style.display = "none"; // Hide the start quiz button
+});
 
 let currentQuestionIndex = 0;
 let score = 0;

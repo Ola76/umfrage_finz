@@ -1,12 +1,14 @@
-. {
+* {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    /* Retained your font */
     box-sizing: border-box;
 }
 
 body {
     background: #230b47;
+    /* Retained your background color */
 }
 
 .app {
@@ -16,6 +18,8 @@ body {
     margin: 100px auto 0;
     border-radius: 10px;
     padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Optional shadow */
 }
 
 .app h1 {
@@ -25,6 +29,26 @@ body {
     border-bottom: 1px solid #3333;
     padding-bottom: 30px;
 }
+
+.app p {
+    margin: 15px 0;
+    /* Add some space above and below each paragraph */
+    color: #333;
+    /* Change text color if needed */
+}
+
+.app a {
+    color: #230b47;
+    /* Change link color to match your theme */
+    text-decoration: none;
+    /* Remove underline from link */
+}
+
+.app a:hover {
+    text-decoration: underline;
+    /* Underline link on hover for better UX */
+}
+
 
 .quiz {
     padding: 20px 0;
@@ -38,7 +62,9 @@ body {
 
 .btn {
     background: #fff;
+    /* Retained your button background */
     color: #222;
+    /* Text color */
     font-weight: 500;
     width: 100%;
     border: 1px solid #222;
@@ -52,6 +78,7 @@ body {
 
 .btn:hover:not([disabled]) {
     background: #a69bd8;
+    /* Retained hover effect */
     color: #fff;
 }
 
@@ -61,6 +88,7 @@ body {
 
 #next-btn {
     background: #230b47;
+    /* Retained next button style */
     color: #fff;
     font-weight: 500;
     width: 150px;
@@ -74,8 +102,10 @@ body {
 
 .correct {
     background: #9aeabc;
+    /* Retained correct answer style */
 }
 
 .incorrect {
     background: #ff9393;
+    /* Retained incorrect answer style */
 }
