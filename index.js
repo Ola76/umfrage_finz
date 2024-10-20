@@ -449,10 +449,19 @@ const nextButton = document.getElementById("next-btn");
 let currentQuestionIndex = 0;
 let score = 0;
 
+// Shuffle function
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+}
+
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
+    shuffle(questions); // Shuffle the questions
     showQuestions();
 }
 
@@ -462,13 +471,16 @@ function showQuestions() {
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
-    currentQuestion.answers.forEach(answer => {
+    // Shuffle the answers before displaying them
+    shuffle(currentQuestion.answers); // Shuffle the answer options
+
+    currentQuestion.answers.forEach((answer, index) => {
         const button = document.createElement("button");
-        button.innerHTML = answer.text;
+        button.innerHTML = `${index + 1}: ${answer.text}`; // Label answers as 1, 2, 3, or 4
         button.classList.add("btn");
         answerButtons.appendChild(button);
-        if(answer.correct){
-            button.dataset.correct = answer.correct
+        if (answer.correct) {
+            button.dataset.correct = answer.correct;
         }
         button.addEventListener("click", selectAnswer);
     });
@@ -484,14 +496,14 @@ function resetState() {
 function selectAnswer(e) {
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
-    if(isCorrect){
+    if (isCorrect) {
         selectedBtn.classList.add("correct");
         score++;
-    }else{
+    } else {
         selectedBtn.classList.add("incorrect");
     }
     Array.from(answerButtons.children).forEach(button => {
-        if(button.dataset.correct === "true"){
+        if (button.dataset.correct === "true") {
             button.classList.add("correct");
         }
         button.disabled = true;
@@ -502,7 +514,7 @@ function selectAnswer(e) {
 function showScore() {
     resetState();
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
-    nextButton.innerHTML = "play Again";
+    nextButton.innerHTML = "Play Again";
     nextButton.style.display = "block";
 }
 
@@ -510,16 +522,17 @@ function handleNextButton() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         showQuestions();
-    }else{
+    } else {
         showScore();
     }
 }
 
-nextButton.addEventListener("click", ()=> {
-    if(currentQuestionIndex < questions.length){
+nextButton.addEventListener("click", () => {
+    if (currentQuestionIndex < questions.length) {
         handleNextButton();
-    }else{
-        startQuiz();;
+    } else {
+        startQuiz();
     }
-})
+});
+
 startQuiz();
